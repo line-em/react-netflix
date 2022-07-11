@@ -1,3 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+body {
+	background-color: #000;
+	font: 400 1rem/1.5 "Finlandica", "Helvetica", "sans-serif";
+}

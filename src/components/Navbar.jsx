@@ -2,12 +2,14 @@ import React from "react";
 
 export default function Navbar() {
 	return (
-		<header>
+		<nav className="flex items-center justify-between p-4 z-50 absolute w-full">
 			<h1 className="text-red-600 text-4xl font-bold cursor-pointer">NETFLIX</h1>
 			<div>
-				<button>SIGN IN</button>
-				<button>SIGN UP</button>
+				<button className="text-white px-4 cursor-pointer">SIGN IN</button>
+				<button className="bg-red-600 text-white px-4 py-2 rounded cursor-pointer">
+					SIGN UP
+				</button>
 			</div>
-		</header>
+		</nav>
 	);
 }
