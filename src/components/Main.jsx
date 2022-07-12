@@ -38,10 +38,10 @@ export default function Main() {
 			<div className="absolute w-full top-[15%] p-4 md:p-8">
 				<h1 className="text-3xl md:text-5xl mb-5">{movies[randomMovie]?.title}</h1>
 				<div className="flex gap-2 mb-5">
-					<button className="border bg-gray-300 text-black border-gray-300 py-2 px-5 rounded">
+					<button className="border bg-gray-300 text-black border-gray-300 py-2 px-5 rounded hover:bg-gray-100 transition duration-300 ease-in-out hover:-translate-y-1">
 						Play
 					</button>
-					<button className="border text-white border-gray-300 py-2 px-5 rounded">
+					<button className="border text-white border-gray-300 py-2 px-5 rounded transition duration-300 ease-in-out hover:-translate-y-1 hover:bg-neutral-900">
 						Watch Later
 					</button>
 				</div>
