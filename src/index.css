@@ -3,6 +3,6 @@
 @import "tailwindcss/utilities";
 
 body {
-	background-color: #000;
+	background-color: rgb(10, 10, 11);
 	font: 400 1rem/1.5 "Finlandica", "Helvetica", "sans-serif";
 }

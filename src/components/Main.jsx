@@ -46,7 +46,7 @@ export default function Main() {
 					</button>
 				</div>
 				<p className="text-gray-200 w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[35] mb-5">
-					{shortOverview(movies[randomMovie]?.overview)}
+					{window.innerWidth > 300 && shortOverview(movies[randomMovie]?.overview)}
 				</p>
 				<p className="text-gray-400 text-sm">
 					Released: {movies[randomMovie]?.release_date}

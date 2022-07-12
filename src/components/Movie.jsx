@@ -5,7 +5,7 @@ export default function Movie({ movie, id }) {
 	const [isLiked, setIsLiked] = React.useState(false);
 
 	return (
-		<div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2 hover:scale-105 transition ease duration-300">
+		<div className="w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2 hover:scale-105 transition ease duration-300">
 			<img
 				src={`https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}`}
 				alt={movie?.title}

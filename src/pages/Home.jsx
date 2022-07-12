@@ -6,11 +6,11 @@ import Row from "../components/Row";
 import movieRequest from "../requests";
 
 export default function Home() {
-	const lineBreak = <hr className="border-2 border-neutral-600/20 my-10 w-1/2 mx-auto" />;
+	const lineBreak = <hr className="border-2 border-neutral-600/20 my-3 lg:my-10 w-1/2 mx-auto" />;
 	return (
 		<>
 			<Main />
-			<main className="mx-10">
+			<main className="mx-2 lg:mx-10">
 				<Row title="Trending" apiUrl={movieRequest.requestTrending} />
 				{lineBreak}
 				<Row title="Top Rated" apiUrl={movieRequest.requestTopRated} />
