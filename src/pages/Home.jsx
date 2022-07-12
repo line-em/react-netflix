@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React from "react";
+import React, { useEffect } from "react";
 import Main from "../components/Main";
 import Row from "../components/Row";
 import movieRequest from "../../requests";
