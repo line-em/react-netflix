@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import Main from "../components/Main";
 import Row from "../components/Row";
-import movieRequest from "../../requests";
+import movieRequest from "../requests";
 
 export default function Home() {
 	return (

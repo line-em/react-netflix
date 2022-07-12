@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import movieRequest from "../../requests.js";
+import movieRequest from "../requests.js";
 
 export default function Main() {
 	const [movies, setMovies] = useState([]);
