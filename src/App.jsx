@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import { Waveform } from "@uiball/loaders";
+import { AuthContextProvider } from "./context/AuthContext";
 
 function App() {
 	const [isLoading, setIsLoading] = React.useState(true);
@@ -13,10 +14,12 @@ function App() {
 
 	return !isLoading ? (
 		<main>
-			<Navbar />
-			<Routes>
-				<Route path="/" element={<Home />} />
-			</Routes>
+			<AuthContextProvider>
+				<Navbar />
+				<Routes>
+					<Route path="/" element={<Home />} />
+				</Routes>
+			</AuthContextProvider>
 		</main>
 	) : (
 		<div className="w-full h-full grid place-items-center my-10">
