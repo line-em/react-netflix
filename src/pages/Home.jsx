@@ -1,18 +1,29 @@
 // @ts-nocheck
-import React, { useEffect } from "react";
+import React from "react";
+import Footer from "../components/Footer";
 import Main from "../components/Main";
 import Row from "../components/Row";
 import movieRequest from "../requests";
 
 export default function Home() {
+	const lineBreak = <hr className="border-2 border-neutral-600/20 my-10 w-1/2 mx-auto" />;
 	return (
 		<>
 			<Main />
-			<Row title="Trending" apiUrl={movieRequest.requestTrending} />
-			<Row title="Top Rated" apiUrl={movieRequest.requestTopRated} />
-			<Row title="Animation" apiUrl={movieRequest.requestAnimation} />
-			<Row title="Sci-Fi" apiUrl={movieRequest.requestSciFi} />
-			<Row title="Latest" apiUrl={movieRequest.requestLatest} />
+			<main className="mx-10">
+				<Row title="Trending" apiUrl={movieRequest.requestTrending} />
+				{lineBreak}
+				<Row title="Top Rated" apiUrl={movieRequest.requestTopRated} />
+				{lineBreak}
+				<Row title="Animation" apiUrl={movieRequest.requestAnimation} />
+				{lineBreak}
+				<Row title="Sci-Fi" apiUrl={movieRequest.requestSciFi} />
+				{lineBreak}
+				<Row title="Latest" apiUrl={movieRequest.requestLatest} />
+			</main>
+			{lineBreak}
+			<Footer />
+			{lineBreak}
 		</>
 	);
 }

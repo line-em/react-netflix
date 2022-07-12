@@ -16,13 +16,16 @@ export default function Row(props) {
 			});
 	}, [props.apiUrl]);
 
-	const renderRow = row?.map((movie, id) => <Movie movie={movie} id={id} />);
-
 	return (
 		<>
 			<h2 className="text-white font-bold md:text-xl p-4">{props.title}</h2>
 			<div className="relative flex items-center">
-				<div id={"slider"}>{renderRow?.length > 0 && renderRow}</div>
+				<div
+					id={"slider"}
+					className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth"
+				>
+					{row !== undefined && row?.map((movie, id) => <Movie movie={movie} id={id} />)}
+				</div>
 			</div>
 		</>
 	);

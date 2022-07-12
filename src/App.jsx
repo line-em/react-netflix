@@ -16,7 +16,7 @@ export default function App() {
 	}, []);
 
 	return !isLoading ? (
-		<main>
+		<>
 			<AuthContextProvider>
 				<Navbar />
 				<Routes>
@@ -26,7 +26,7 @@ export default function App() {
 					<Route path="/account" element={<Account />} />
 				</Routes>
 			</AuthContextProvider>
-		</main>
+		</>
 	) : (
 		<div className="w-full h-full grid place-items-center my-10">
 			<Waveform size={35} color="red" />
