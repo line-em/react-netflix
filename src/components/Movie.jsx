@@ -12,14 +12,14 @@ export default function Movie({ movie, id }) {
 				className="w-full h-auto block rounded"
 			/>
 			<div className="absolute top-0 left-0 w-full h-full hover:bg-black/70 opacity-0 hover:opacity-100 text-white p-2 transition ease duration-300">
-				<p className="p-2 text-base md:text-lg whitespace-normal font-bold flex justify-center h-full text-center tracking-wide">
+				<p className="text-base md:text-lg whitespace-normal font-bold flex justify-center items-center h-full text-center tracking-wide">
 					{movie?.title}
 				</p>
 				<HeartStraight
 					size={25}
 					weight={isLiked ? "fill" : "regular"}
 					color={isLiked ? "#EF4444" : "white"}
-					className="bottom-4 left-4 absolute transition ease-in-out duration-150 active:scale-110 drop-shadow-lg"
+					className="top-4 left-4 absolute transition ease-in-out duration-150 active:scale-110 drop-shadow-lg"
 					onClick={() => setIsLiked(!isLiked)}
 				/>
 			</div>
