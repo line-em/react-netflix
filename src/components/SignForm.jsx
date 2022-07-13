@@ -9,7 +9,7 @@ export default function SignForm({ type }) {
 	const { user, signUp } = userAuth();
 	const navigate = useNavigate();
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (type === "Sign Up") {
 			try {

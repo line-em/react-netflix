@@ -5,6 +5,14 @@ import { userAuth } from "../context/AuthContext";
 export default function Navbar() {
 	const { user, logOut } = userAuth();
 
+	const handleLogOut = async () => {
+		try {
+			await logOut();
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	const authenthicatedButtons = (
 		<>
 			<Link to="/profile">
@@ -14,7 +22,7 @@ export default function Navbar() {
 			</Link>
 			<button
 				className="bg-red-600 text-white px-4 py-2 rounded cursor-pointer  hover:bg-red-800 hover:-translate-y-1 transition active:-translate-y-0"
-				onClick={logOut}
+				onClick={handleLogOut}
 			>
 				Logout
 			</button>
