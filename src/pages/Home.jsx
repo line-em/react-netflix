@@ -10,7 +10,7 @@ export default function Home() {
 	return (
 		<>
 			<Main />
-			<main className="mx-2 lg:mx-10">
+			<main className="mx-6 lg:mx-12">
 				<Row title="Trending" apiUrl={movieRequest.requestTrending} />
 				{lineBreak}
 				<Row title="Top Rated" apiUrl={movieRequest.requestTopRated} />
