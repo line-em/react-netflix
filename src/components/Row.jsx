@@ -29,7 +29,7 @@ export default function Row(props) {
 	return (
 		<>
 			<h2 className="text-white font-bold md:text-xl p-4">{props.title}</h2>
-			<div className="relative flex items-center group">
+			<section className="relative flex items-center group">
 				<ArrowCircleLeft
 					color="#fff"
 					size={38}
@@ -52,7 +52,7 @@ export default function Row(props) {
 					className="absolute -right-6 opacity-100 hover:opacity-70 active:scale-105 cursor-pointer transition ml-2 z-10 hidden group-hover:block"
 					onClick={slideRight}
 				/>
-			</div>
+			</section>
 		</>
 	);
 }
