@@ -1,8 +1,32 @@
 import { HeartStraight } from "phosphor-react";
-import React from "react";
+import React, { useState } from "react";
+import { userAuth } from "../context/AuthContext";
+import { db } from "../../firebase";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 
 export default function Movie({ movie, id }) {
-	const [isLiked, setIsLiked] = React.useState(false);
+	const [isLiked, setIsLiked] = useState(false);
+	const [saved, setSaved] = useState([]);
+	const { user } = userAuth();
+
+	const movieID = doc(db, `users`, `${user?.email}`);
+
+	const handleLike = async () => {
+		if (user) {
+			setIsLiked(!isLiked);
+			setSaved(true);
+
+			await updateDoc(movieID, {
+				savedMovies: arrayUnion({
+					id: movie.id,
+					title: movie.title,
+					img: movie.backdrop_path
+				})
+			});
+		} else {
+			alert("Please log in to save your favorites");
+		}
+	};
 
 	return (
 		<div className="w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative transition ease duration-300 mx-1 ">
@@ -20,7 +44,7 @@ export default function Movie({ movie, id }) {
 					weight={isLiked ? "fill" : "regular"}
 					color={isLiked ? "#EF4444" : "white"}
 					className="top-2 left-2 absolute transition ease-in-out duration-150 active:scale-110 drop-shadow-lg"
-					onClick={() => setIsLiked(!isLiked)}
+					onClick={() => handleLike()}
 				/>
 			</div>
 		</div>
