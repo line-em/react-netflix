@@ -1,3 +1,4 @@
+import { Confetti, Warning } from "phosphor-react";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userAuth } from "../context/AuthContext";
@@ -5,21 +6,53 @@ import { userAuth } from "../context/AuthContext";
 export default function SignForm({ type }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [error, setError] = useState("");
-	const { user, signUp } = userAuth();
+	const { user, signUp, logIn } = userAuth();
 	const navigate = useNavigate();
+	const [error, setError] = useState(null);
+	const [success, setSuccess] = useState(null);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (type === "Sign Up") {
-			try {
-				signUp(email, password);
-				navigate("/");
-			} catch (error) {
-				setError(error.message);
-			}
+			signUp(email, password)
+				.then(() => {
+					setSuccess(true);
+					setTimeout(() => {
+						navigate("/");
+					}, 2000);
+				})
+				.catch(() => {
+					setError(true);
+				});
+		} else {
+			logIn(email, password)
+				.then(() => {
+					setSuccess(true);
+					setTimeout(() => {
+						navigate("/");
+					}, 2000);
+				})
+				.catch(() => {
+					setError(true);
+				});
 		}
+		setError(null);
+		setSuccess(null);
 	};
+
+	const errorMessage = (
+		<p className="bg-red-600/70 text-white p-3 mb-6 rounded flex items-center justify-center gap-3">
+			<Warning size={32} weight="duotone" className="flex-none" />
+			Sorry, an error has occurred. Please check your credentials.
+		</p>
+	);
+
+	const successMessage = (
+		<p className="bg-green-600/70 text-white p-3 mb-6 rounded flex items-center justify-center gap-3">
+			<Confetti size={32} weight="duotone" className="flex-none" />
+			Success! You will be redirected shortly.
+		</p>
+	);
 
 	return (
 		<div className="w-full h-screen">
@@ -53,15 +86,16 @@ export default function SignForm({ type }) {
 						<button className="bg-red-600 py-3 my-6 rounded font-bold block hover:bg-red-800 hover:-translate-y-1 transition active:-translate-y-0">
 							{type}
 						</button>
+
+						<div>{(error && errorMessage) || (success && successMessage)}</div>
+
 						<aside className="flex justify-between items-center text-sm">
 							<label htmlFor="remember">
 								<input type="checkbox" name="remember" id="remember" /> Remember me
 							</label>
-							<Link to="/">
-								<a className="underline text-red-400 hover:text-red-200 transition">
-									Need help?
-								</a>
-							</Link>
+							<span className="underline text-red-400 hover:text-red-200 transition">
+								<Link to="/">Need help?</Link>
+							</span>
 						</aside>
 						<hr className="border-2 border-neutral-600/20 my-3 lg:my-10 w-1/2 mx-auto" />
 
