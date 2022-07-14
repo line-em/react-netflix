@@ -32,7 +32,7 @@ export default function Navbar() {
 
 	const authenthicatedButtons = (
 		<>
-			<Link to="/profile">
+			<Link to="/account">
 				<button className="bg-neutral-800 text-white px-4 py-2 rounded cursor-pointer hover:bg-neutral-900 hover:-translate-y-1 transition active:-translate-y-0">
 					Account
 				</button>
