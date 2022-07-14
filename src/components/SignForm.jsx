@@ -2,6 +2,7 @@ import { Confetti, Warning } from "phosphor-react";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userAuth } from "../context/AuthContext";
+import NetflixBg from "./NetflixBg";
 
 export default function SignForm({ type }) {
 	const [email, setEmail] = useState("");
@@ -56,13 +57,7 @@ export default function SignForm({ type }) {
 
 	return (
 		<div className="w-full h-screen">
-			<img
-				className="hidden sm:block absolute w-full h-full object-cover"
-				src="https://assets.nflxext.com/ffe/siteui/vlv3/1ef84595-1fdb-4404-adac-15215ceeb3ae/c341e6ff-7d21-4cf1-9c2c-83d51d8e26a7/PT-pt-20220711-popsignuptwoweeks-perspective_alpha_website_small.jpg"
-				alt="netflix background"
-				srcSet="https://assets.nflxext.com/ffe/siteui/vlv3/1ef84595-1fdb-4404-adac-15215ceeb3ae/c341e6ff-7d21-4cf1-9c2c-83d51d8e26a7/PT-pt-20220711-popsignuptwoweeks-perspective_alpha_website_small.jpg 1000w, https://assets.nflxext.com/ffe/siteui/vlv3/1ef84595-1fdb-4404-adac-15215ceeb3ae/c341e6ff-7d21-4cf1-9c2c-83d51d8e26a7/PT-pt-20220711-popsignuptwoweeks-perspective_alpha_website_medium.jpg 1500w, https://assets.nflxext.com/ffe/siteui/vlv3/1ef84595-1fdb-4404-adac-15215ceeb3ae/c341e6ff-7d21-4cf1-9c2c-83d51d8e26a7/PT-pt-20220711-popsignuptwoweeks-perspective_alpha_website_large.jpg 1800w"
-			/>
-			<div className="fixed bg-black/70 top-0 left-0 w-full h-screen"></div>
+			<NetflixBg />
 			<section className="fixed w-full px-4 py-24 z-10">
 				<article className="mx-auto max-w-[450px] h-[600px] p-10 md:p-20 bg-black/75 rounded text-white flex flex-col items-center justify-center">
 					<h1 className="text-3xl font-bold">{type}</h1>
