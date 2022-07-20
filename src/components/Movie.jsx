@@ -4,21 +4,19 @@ import { userAuth } from "../context/AuthContext";
 import { db } from "../../firebase";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 
-export default function Movie({ movie, liked }) {
+export default function Movie({ movie, liked: cloudLike }) {
 	const [isLiked, setIsLiked] = useState(false);
 	const { user } = userAuth();
 
 	const movieRef = doc(db, `users`, `${user?.email}`);
 
 	useEffect(() => {
-		setIsLiked(liked);
-	}, [liked]);
+		setIsLiked(cloudLike);
+	}, [cloudLike]);
 
 	const handleLike = async () => {
 		if (user) {
-			setIsLiked((prevLiked) => !prevLiked);
-
-			if (isLiked) {
+			if (!isLiked) {
 				await updateDoc(movieRef, {
 					savedMovies: arrayUnion({
 						id: movie.id,
@@ -35,6 +33,8 @@ export default function Movie({ movie, liked }) {
 					})
 				});
 			}
+
+			setIsLiked(!isLiked);
 		} else {
 			alert("Please log in to save your favorites");
 		}

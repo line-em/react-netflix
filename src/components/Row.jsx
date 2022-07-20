@@ -48,7 +48,6 @@ export default function Row(props) {
 			);
 			if (filterMovies && filterMovies?.length > 0) {
 				setIsLikedCloud(filterMovies.map((movie) => movie.id));
-				console.log(isLikedCloud);
 			}
 		});
 	}, [row]);
