@@ -1,28 +1,40 @@
 import { HeartStraight } from "phosphor-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { userAuth } from "../context/AuthContext";
 import { db } from "../../firebase";
-import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 
-export default function Movie({ movie, id }) {
+export default function Movie({ movie, liked }) {
 	const [isLiked, setIsLiked] = useState(false);
-	const [saved, setSaved] = useState([]);
 	const { user } = userAuth();
 
-	const movieID = doc(db, `users`, `${user?.email}`);
+	const movieRef = doc(db, `users`, `${user?.email}`);
+
+	useEffect(() => {
+		setIsLiked(liked);
+	}, [liked]);
 
 	const handleLike = async () => {
 		if (user) {
-			setIsLiked(!isLiked);
-			setSaved(true);
+			setIsLiked((prevLiked) => !prevLiked);
 
-			await updateDoc(movieID, {
-				savedMovies: arrayUnion({
-					id: movie.id,
-					title: movie.title,
-					img: movie.backdrop_path
-				})
-			});
+			if (isLiked) {
+				await updateDoc(movieRef, {
+					savedMovies: arrayUnion({
+						id: movie.id,
+						title: movie.title,
+						img: movie.backdrop_path
+					})
+				});
+			} else {
+				await updateDoc(movieRef, {
+					savedMovies: arrayRemove({
+						id: movie.id,
+						title: movie.title,
+						img: movie.backdrop_path
+					})
+				});
+			}
 		} else {
 			alert("Please log in to save your favorites");
 		}
