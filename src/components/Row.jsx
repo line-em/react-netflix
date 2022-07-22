@@ -42,7 +42,7 @@ export default function Row(props) {
 			let cloudMovies = doc?.data()?.savedMovies;
 
 			const filterMovies = row?.filter((movie) =>
-				cloudMovies.find((savedMovie) => {
+				cloudMovies?.find((savedMovie) => {
 					return savedMovie.id === movie.id;
 				})
 			);
