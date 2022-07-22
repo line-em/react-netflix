@@ -8,7 +8,7 @@ export default function Movie({ movie, liked: cloudLike }) {
 	const [isLiked, setIsLiked] = useState(false);
 	const { user } = userAuth();
 
-	const movieRef = doc(db, `users`, `${user?.email}`);
+	const movieRef = doc(db, `users`, `${user?.user?.email}`);
 
 	useEffect(() => {
 		setIsLiked(cloudLike);

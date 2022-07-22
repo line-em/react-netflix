@@ -22,7 +22,7 @@ export default function Row(props) {
 
 	// Get user's saved movies
 	const { user } = userAuth();
-	const movieRef = doc(db, `users`, `${user?.email}`);
+	const movieRef = doc(db, `users`, `${user?.user?.email}`);
 
 	// API call for row of movies
 	useEffect(() => {
