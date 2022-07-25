@@ -2,17 +2,44 @@ import { HeartStraight } from "phosphor-react";
 import React, { useEffect, useState } from "react";
 import { userAuth } from "../context/AuthContext";
 import { db } from "../../firebase";
-import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { arrayRemove, arrayUnion, doc, updateDoc, getDoc } from "firebase/firestore";
 
 export default function Movie({ movie, liked: cloudLike }) {
 	const [isLiked, setIsLiked] = useState(false);
 	const { user } = userAuth();
 
-	const movieRef = doc(db, `users`, `${user?.user?.email}`);
+	const movieRef = doc(db, `users`, `${user?.email}`);
+	// Firebase call for liked movies & to check if the movie is in row. Save to state.
+	// useEffect(
+	// 	() => {
+	// 		const getDoc = async () => {
+	// 			const doc = await Promise.all([getDoc(movieRef)]);
+	// 			const cloudMovies = doc[0]?.data()?.savedMovies;
+	// 			console.log(cloudMovies);
+	// 		};
+	// getDoc(movieRef).then((doc) => {
+	// 	let cloudMovies = doc?.data()?.savedMovies;
+
+	// 	const filterMovies = cloudMovies?.filter((cloudMovie) => cloudMovie.id === movie.id);
+
+	// 	if (filterMovies && filterMovies?.length > 0) {
+	// 		setIsLiked(true);
+	// },
+	// const filterMovies = row?.filter((movie) =>
+	// 	cloudMovies?.find((savedMovie) => {
+	// 		return savedMovie.id === movie.id;
+	// 	})
+	// );
+	// if (filterMovies && filterMovies?.length > 0) {
+	// 	setIsLikedCloud(filterMovies.map((movie) => movie.id));
+	// }
+	// });
+	// 	[movie]
+	// );
 
 	useEffect(() => {
 		setIsLiked(cloudLike);
-	}, [cloudLike]);
+	}, []);
 
 	const handleLike = async () => {
 		if (user) {

@@ -22,7 +22,7 @@ export default function Row(props) {
 
 	// Get user's saved movies
 	const { user } = userAuth();
-	const movieRef = doc(db, `users`, `${user?.user?.email}`);
+	const movieRef = doc(db, `users`, `${user?.email}`);
 
 	// API call for row of movies
 	useEffect(() => {
@@ -31,26 +31,23 @@ export default function Row(props) {
 			.then((response) => {
 				setRow(response.data.results.sort(() => Math.random() - 0.5));
 			})
+			.then(getDoc(movieRef))
+			.then((doc) => {
+				let cloudMovies = doc?.data()?.savedMovies;
+
+				const filterMovies = row?.filter((movie) =>
+					cloudMovies?.find((savedMovie) => {
+						return savedMovie.id === movie.id;
+					})
+				);
+				if (filterMovies && filterMovies?.length > 0) {
+					setIsLikedCloud(filterMovies.map((movie) => movie.id));
+				}
+			})
 			.catch((error) => {
 				console.log(error);
 			});
 	}, [props.apiUrl]);
-
-	// Firebase call for liked movies & to check if the movie is in row. Save to state.
-	useEffect(() => {
-		getDoc(movieRef).then((doc) => {
-			let cloudMovies = doc?.data()?.savedMovies;
-
-			const filterMovies = row?.filter((movie) =>
-				cloudMovies?.find((savedMovie) => {
-					return savedMovie.id === movie.id;
-				})
-			);
-			if (filterMovies && filterMovies?.length > 0) {
-				setIsLikedCloud(filterMovies.map((movie) => movie.id));
-			}
-		});
-	}, [row]);
 
 	return (
 		<>
