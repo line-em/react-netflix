@@ -44,6 +44,15 @@ export default function Row(props) {
 					setIsLikedCloud(filterMovies.map((movie) => movie.id));
 				}
 			})
+			.then(() => {
+				let movieRow = row?.map((movie, id) => (
+					<Movie
+						movie={movie}
+						key={id}
+						liked={isLikedCloud && isLikedCloud?.includes(movie.id)}
+					/>
+				));
+			})
 			.catch((error) => {
 				console.log(error);
 			});
@@ -65,14 +74,7 @@ export default function Row(props) {
 					ref={slider}
 					className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
 				>
-					{row !== null &&
-						row?.map((movie, id) => (
-							<Movie
-								movie={movie}
-								key={id}
-								liked={isLikedCloud && isLikedCloud?.includes(movie.id)}
-							/>
-						))}
+					{row !== null && movieRow}
 				</div>
 
 				<ArrowCircleRight
