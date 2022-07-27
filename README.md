@@ -37,6 +37,8 @@ I had a lot of difficulties adjusting the Firebase promises with the API calls. 
 
 As mentioned, though, it tends to work as expected when refreshing the page.
 
+This wasn't happening until I tried to fetch the cloud data from Firebase. If I don't use getDoc() on row, the problem vanishes. I know that there is something I'm missing and that isn't clicking, and I will try to fix this in the future.
+
 ## Changelog
 
 -   1.0 - Initial commit.
