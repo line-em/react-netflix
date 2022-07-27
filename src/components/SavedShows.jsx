@@ -11,17 +11,16 @@ export default function SavedShows() {
 
 	// Firebase call for liked movies & to check if the movie is in row. Save to state.
 	useEffect(() => {
-		if (user) {
-			// getDoc(movieRef).then((doc) => {
-			// 	setFavoriteMovies(doc?.data()?.savedMovies);
-			// });
-			// console.log(favoriteMovies);
-			onSnapshot(movieRef, (doc) => {
-				setFavoriteMovies(doc?.data()?.savedMovies);
-			});
-			console.log(favoriteMovies);
-		}
-	}, []);
+		// getDoc(movieRef).then((doc) => {
+		// 	setFavoriteMovies(doc?.data()?.savedMovies);
+		// });
+		// console.log(favoriteMovies);
+		onSnapshot(movieRef, (doc) => {
+			setFavoriteMovies(doc?.data()?.savedMovies);
+		});
+		console.log(favoriteMovies);
+	}, [user?.email]);
+
 	return (
 		<>
 			{/* className="w-[300px] md:w-[340px] lg:w-[360px] inline-block" */}
@@ -34,8 +33,7 @@ export default function SavedShows() {
 							alt={movie?.title}
 							src={`https://image.tmdb.org/t/p/w500/${movie?.img}`}
 						/>
-
-						{movie.title}
+						<p className="text-white">{movie.title}</p>
 					</div>
 				))}
 		</>
