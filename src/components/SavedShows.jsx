@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { userAuth } from "../context/AuthContext";
 import { db } from "../../firebase";
-import { doc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
+import { doc, updateDoc, onSnapshot } from "firebase/firestore";
 import { X } from "phosphor-react";
 
 export default function SavedShows() {
@@ -12,15 +12,22 @@ export default function SavedShows() {
 
 	// Firebase call for liked movies & to check if the movie is in row. Save to state.
 	useEffect(() => {
-		// getDoc(movieRef).then((doc) => {
-		// 	setFavoriteMovies(doc?.data()?.savedMovies);
-		// });
-		// console.log(favoriteMovies);
 		onSnapshot(movieRef, (doc) => {
 			setFavoriteMovies(doc?.data()?.savedMovies);
 		});
 		console.log(favoriteMovies);
 	}, [user?.email]);
+
+	const removeMovie = async (movieID) => {
+		try {
+			const result = favoriteMovies.filter((movie) => movie.id !== movieID);
+			await updateDoc(movieRef, {
+				savedMovies: result
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<>
@@ -41,6 +48,7 @@ export default function SavedShows() {
 								size={25}
 								className="top-2 left-2 absolute transition ease-in-out duration-150 active:scale-110 drop-shadow-lg"
 								color="white"
+								onClick={() => removeMovie(movie.id)}
 							/>
 						</div>
 					</div>
