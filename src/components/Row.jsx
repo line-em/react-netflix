@@ -2,14 +2,10 @@ import axios from "axios";
 import { ArrowCircleLeft, ArrowCircleRight } from "phosphor-react";
 import React, { useEffect, useRef, useState } from "react";
 import Movie from "./Movie";
-import { db } from "../../firebase";
-import { doc, getDoc } from "firebase/firestore";
-import { userAuth } from "../context/AuthContext";
 
 export default function Row(props) {
 	// States: row of movies & liked movies fetched from firebase
 	const [row, setRow] = useState();
-	const [isLikedCloud, setIsLikedCloud] = useState(false);
 
 	// Sliders
 	const slider = useRef();
@@ -20,38 +16,12 @@ export default function Row(props) {
 		slider.current.scrollLeft += 400;
 	};
 
-	// Get user's saved movies
-	const { user } = userAuth();
-	const movieRef = doc(db, `users`, `${user?.email}`);
-
 	// API call for row of movies
 	useEffect(() => {
 		axios
 			.get(props.apiUrl)
 			.then((response) => {
 				setRow(response.data.results.sort(() => Math.random() - 0.5));
-			})
-			.then(getDoc(movieRef))
-			.then((doc) => {
-				let cloudMovies = doc?.data()?.savedMovies;
-
-				const filterMovies = row?.filter((movie) =>
-					cloudMovies?.find((savedMovie) => {
-						return savedMovie.id === movie.id;
-					})
-				);
-				if (filterMovies && filterMovies?.length > 0) {
-					setIsLikedCloud(filterMovies.map((movie) => movie.id));
-				}
-			})
-			.then(() => {
-				let movieRow = row?.map((movie, id) => (
-					<Movie
-						movie={movie}
-						key={id}
-						liked={isLikedCloud && isLikedCloud?.includes(movie.id)}
-					/>
-				));
 			})
 			.catch((error) => {
 				console.log(error);
@@ -74,7 +44,8 @@ export default function Row(props) {
 					ref={slider}
 					className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
 				>
-					{row !== null && movieRow}
+					{row !== null && row?.map((movie, id) => <Movie movie={movie} key={id} />)}
+					{/* liked={isLikedCloud && isLikedCloud?.includes(movie.id)} */}
 				</div>
 
 				<ArrowCircleRight
