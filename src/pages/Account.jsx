@@ -1,36 +1,21 @@
 import SavedShows from "../components/SavedShows";
-import React, { useEffect, useState } from "react";
-import { userAuth } from "../context/AuthContext";
-import { db } from "../../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import React from "react";
+import NetflixBg from "../components/NetflixBg";
 
 export default function Account() {
-	const { user } = userAuth();
-	const movieRef = doc(db, `users`, `${user?.email}`);
-	const [favoriteMovies, setFavoriteMovies] = useState([]);
-
-	// Firebase call for liked movies & to check if the movie is in row. Save to state.
-	useEffect(() => {
-		if (user) {
-			getDoc(movieRef).then((doc) => {
-				setFavoriteMovies(doc?.data()?.savedMovies);
-			});
-		}
-	}, []);
-
 	return (
-		<>
-			<SavedShows />
-			<h1 className="text-white">Saved Shows</h1>
-			{favoriteMovies && (
-				<div className="flex flex-wrap p-10 bg-blue-900">
-					{favoriteMovies.map((movie) => (
-						<article className="text-white p-10 text-xl" key={movie.id}>
-							{movie.title}
-						</article>
-					))}
+		<div>
+			<div className="h-[400px] w-full object-cover relative -z-10">
+				<NetflixBg />
+			</div>
+			<div className="absolute top-[10%] md:top-[20%] px-4">
+				<h1 className="text-white text-4xl md:text-5xl font-bold pb-8">My Shows</h1>
+			</div>
+			<div className="md:-my-20 -my-56 px-4">
+				<div className="grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10 shadow-md">
+					<SavedShows />
 				</div>
-			)}
-		</>
+			</div>
+		</div>
 	);
 }
