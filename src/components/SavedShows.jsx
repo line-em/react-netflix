@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { userAuth } from "../context/AuthContext";
 import { db } from "../../firebase";
 import { doc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
+import { X } from "phosphor-react";
 
 export default function SavedShows() {
 	// Get user's saved movies
@@ -23,19 +24,28 @@ export default function SavedShows() {
 
 	return (
 		<>
-			{/* className="w-[300px] md:w-[340px] lg:w-[360px] inline-block" */}
 			{favoriteMovies &&
 				favoriteMovies?.map((movie) => (
-					<div className="">
+					<div className="inline-block cursor-pointer relative transition ease duration-300">
 						<img
-							className="w-full h-auto rounded cursor-pointer"
+							className="rounded"
 							key={movie.id}
 							alt={movie?.title}
 							src={`https://image.tmdb.org/t/p/w500/${movie?.img}`}
 						/>
-						<p className="text-white">{movie.title}</p>
+						<div className="absolute top-0 left-0 w-full h-full hover:bg-black/70 opacity-0 hover:opacity-100 text-white transition ease duration-300 ">
+							<p className="md:text-lg whitespace-normal font-bold flex justify-center items-center h-full text-center tracking-wide mx-3">
+								{movie?.title}
+							</p>
+							<X
+								size={25}
+								className="top-2 left-2 absolute transition ease-in-out duration-150 active:scale-110 drop-shadow-lg"
+								color="white"
+							/>
+						</div>
 					</div>
 				))}
+			{/* </div> */}
 		</>
 	);
 }
