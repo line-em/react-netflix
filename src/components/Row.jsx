@@ -16,16 +16,19 @@ export default function Row(props) {
 		slider.current.scrollLeft += 400;
 	};
 
+	const getRequest = async () => {
+		try {
+			await axios.get(props.apiUrl).then((response) => {
+				setRow(response.data.results.sort(() => Math.random() - 0.5));
+			});
+		} catch {
+			console.log("error");
+		}
+	};
+
 	// API call for row of movies
 	useEffect(() => {
-		axios
-			.get(props.apiUrl)
-			.then((response) => {
-				setRow(response.data.results.sort(() => Math.random() - 0.5));
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		getRequest();
 	}, [props.apiUrl]);
 
 	return (

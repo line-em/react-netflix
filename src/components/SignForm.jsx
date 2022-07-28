@@ -19,7 +19,7 @@ export default function SignForm({ type }) {
 				.then(() => {
 					setSuccess(true);
 					setTimeout(() => {
-						navigate("/");
+						navigate("/", { replace: true });
 					}, 2000);
 				})
 				.catch(() => {
@@ -30,7 +30,7 @@ export default function SignForm({ type }) {
 				.then(() => {
 					setSuccess(true);
 					setTimeout(() => {
-						navigate("/");
+						navigate("/", { replace: true });
 					}, 2000);
 				})
 				.catch(() => {

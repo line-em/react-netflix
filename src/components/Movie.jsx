@@ -7,21 +7,32 @@ import { arrayRemove, arrayUnion, doc, updateDoc, getDoc } from "firebase/firest
 export default function Movie({ movie }) {
 	const [isLiked, setIsLiked] = useState(false);
 	const { user } = userAuth();
+	let movieRef = doc(db, `users`, `${user?.email}`);
 
-	const movieRef = doc(db, `users`, `${user?.email}`);
+	console.log(movieRef.id);
+
+	const getLikedMovies = async (movieRef) => {
+		const doc = await getDoc(movieRef);
+		const likedMovies = doc?.data()?.savedMovies;
+		setIsLiked(likedMovies.some((movie) => movie.id === movie.id));
+	};
+	useEffect(() => {
+		movieRef = doc(db, `users`, `${user?.email}`);
+	}, []);
 
 	useEffect(() => {
-		getDoc(movieRef).then((doc) => {
-			let cloudMovies = doc?.data()?.savedMovies;
-			const filterMovie = cloudMovies?.filter((cloudMovie) => cloudMovie.id === movie.id);
+		getLikedMovies(movieRef);
+		// getDoc(movieRef).then((doc) => {
+		// 	let cloudMovies = doc?.data()?.savedMovies;
+		// 	const filterMovie = cloudMovies?.filter((cloudMovie) => cloudMovie.id === movie.id);
 
-			if (filterMovie && filterMovie?.length > 0) {
-				setIsLiked(true);
-			}
-		}),
-			(error) => {
-				console.log(error);
-			};
+		// 	if (filterMovie && filterMovie?.length > 0) {
+		// 		setIsLiked(true);
+		// 	}
+		// }),
+		// 	(error) => {
+		// 		console.log(error);
+		// 	};
 	}, [movieRef]);
 
 	const handleLike = async () => {
