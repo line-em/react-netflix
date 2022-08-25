@@ -1,5 +1,6 @@
 {
 	"name": "netflix-clone",
+	"homepage": "https://line-em.github.io/react-netflix/",
 	"private": true,
 	"version": "0.0.0",
 	"scripts": {
