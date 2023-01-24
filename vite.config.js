@@ -4,5 +4,5 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [react()],
-	base: "https://line-em.github.io/react-netflix/"
+	base: "/react-netflix/"
 });
