@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ArrowCircleLeft, ArrowCircleRight } from "phosphor-react";
+import { ArrowCircleLeft, ArrowCircleRight, Square } from "phosphor-react";
 import React, { useEffect, useRef, useState } from "react";
 import Movie from "./Movie";
 
@@ -33,7 +33,10 @@ export default function Row(props) {
 
 	return (
 		<>
-			<h2 className="text-white font-bold md:text-xl p-4">{props.title}</h2>
+			<h2 className="text-white font-bold md:text-xl first:py-4 pb-4 tracking-wide flex place-items-center gap-2">
+				<Square size={24} color="#fff" weight="fill" className="fill-red-600" />
+				{props.title}
+			</h2>
 			<section className="relative flex items-center group">
 				<ArrowCircleLeft
 					color="#fff"

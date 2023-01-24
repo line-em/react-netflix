@@ -53,7 +53,6 @@ export default function SavedShows() {
 						</div>
 					</div>
 				))}
-			{/* </div> */}
 		</>
 	);
 }

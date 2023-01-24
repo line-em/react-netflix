@@ -62,9 +62,11 @@ export default function Navbar() {
 	);
 
 	return (
-		<nav className="flex items-center justify-between p-4 z-50 absolute w-full">
+		<nav className="flex flex-wrap items-center justify-between p-4 md:p-8 lg:px-12 lg:py-8 z-50 absolute w-full gap-3">
 			<Link to="/">
-				<h1 className="text-red-600 text-4xl font-bold cursor-pointer">NETFLIX</h1>
+				<h1 className="text-red-600 text-4xl font-bold cursor-pointer tracking-tighter">
+					NETFLIX
+				</h1>
 			</Link>
 			<div className="flex justify-end flex-wrap gap-3 relative">
 				{user ? authenthicatedButtons : generalButtons}
