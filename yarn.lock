@@ -2618,6 +2618,7 @@ __metadata:
     react: ^18.0.0
     react-dom: ^18.0.0
     react-router-dom: ^6.3.0
+    sweetalert2: ^11.7.1
     tailwind-scrollbar-hide: ^1.1.7
     tailwindcss: ^3.1.5
     vite: ^2.9.9
@@ -3239,6 +3240,13 @@ __metadata:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 53b1e247e68e05db7b3808b99b892bd36fb096e6fba213a06da7fab22045e97597db425c724f2bbd6c99a3c295e1e73f3e4de78592289f38431049e1277ca0ae
+  languageName: node
+  linkType: hard
+
+"sweetalert2@npm:^11.7.1":
+  version: 11.7.1
+  resolution: "sweetalert2@npm:11.7.1"
+  checksum: 906aea3bf73e20c4c4454aac7101af01f698b4e5006dc89ef81ada6f6c3ed9eca253c6f8c445699e7f76ffd2e4f90b6db250c954195a199fc9aa5fda1976863d
   languageName: node
   linkType: hard
 

@@ -1,5 +1,6 @@
 import { HeartStraight } from "phosphor-react";
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import { userAuth } from "../context/AuthContext";
 import { db } from "../../firebase";
 import { arrayRemove, arrayUnion, doc, updateDoc, getDoc } from "firebase/firestore";
@@ -62,7 +63,18 @@ export default function Movie({ movie }) {
 				setIsLiked(!isLiked);
 			});
 		} else {
-			alert("Please log in to save your favorites");
+			Swal.fire({
+				title: "Error!",
+				text: "Please log in to save your favorites!",
+				icon: "error",
+				backdrop: "rgba(10, 10, 11, 0.7)",
+				background: "rgb(24, 24, 25)",
+				color: "whitesmoke",
+				confirmButtonText: "Close",
+				confirmButtonColor: "#dc2626",
+				iconColor: "#dc2626",
+				width: "25em"
+			});
 		}
 	};
 
