@@ -40,6 +40,8 @@ export default function Movie({ movie }) {
 				updatedData = {
 					savedMovies: arrayUnion({
 						id: movie.id,
+						desc: movie.overview,
+						rating: movie.vote_average,
 						title: movie.title,
 						img: movie.backdrop_path
 					})
@@ -48,6 +50,8 @@ export default function Movie({ movie }) {
 				updatedData = {
 					savedMovies: arrayRemove({
 						id: movie.id,
+						desc: movie.overview,
+						rating: movie.vote_average,
 						title: movie.title,
 						img: movie.backdrop_path
 					})

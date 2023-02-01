@@ -6,21 +6,36 @@ import { X } from "phosphor-react";
 
 export default function SavedShows() {
 	const { user } = userAuth();
-	const movieRef = doc(db, `users`, `${user?.uid}`);
 	const [favoriteMovies, setFavoriteMovies] = useState([]);
+	let movieRef = doc(db, `users`, `${user?.uid}`);
 
-	// Firebase call for liked movies & to check if the movie is in row. Save to state.
 	useEffect(() => {
+		if (!user) {
+			setTimeout(() => {
+				navigate("/login", { replace: true });
+			}, 100);
+		}
+	}, [user]);
+
+	useEffect(() => {
+		movieRef = doc(db, `users`, `${user?.user?.uid}`);
+	}, [user]);
+
+	useEffect(() => {
+		console.log("rerender");
 		onSnapshot(movieRef, (doc) => {
 			setFavoriteMovies(doc?.data()?.savedMovies);
 		});
-	}, [user?.email]);
+	}, []);
 
 	const removeMovie = async (movieID) => {
 		try {
-			const result = favoriteMovies.filter((movie) => movie.id !== movieID);
+			// const result = favoriteMovies.filter((movie) => movie.id !== movieID);
+			movieRef = doc(db, `users`, `${user?.user?.uid}`);
+
+			console.log(movieRef);
 			await updateDoc(movieRef, {
-				savedMovies: result
+				savedMovies: favoriteMovies.filter((movie) => movie.id !== movieID)
 			});
 		} catch (error) {
 			console.log(error);
