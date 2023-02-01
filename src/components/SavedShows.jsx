@@ -30,7 +30,6 @@ export default function SavedShows() {
 
 	const removeMovie = async (movieID) => {
 		try {
-			// const result = favoriteMovies.filter((movie) => movie.id !== movieID);
 			movieRef = doc(db, `users`, `${user?.user?.uid}`);
 
 			console.log(movieRef);
