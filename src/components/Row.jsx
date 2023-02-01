@@ -53,7 +53,6 @@ export default function Row(props) {
 				>
 					{row !== null &&
 						row?.map((movie, id) => <Movie movie={movie} key={id} />)}
-					{/* liked={isLikedCloud && isLikedCloud?.includes(movie.id)} */}
 				</div>
 
 				<ArrowCircleRight

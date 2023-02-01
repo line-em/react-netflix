@@ -4,20 +4,17 @@ import { useState } from "react";
 import Footer from "../components/Footer";
 import Main from "../components/Main";
 import Row from "../components/Row";
-import movieRequest, { otherGenres } from "../requests";
+import movieRequest, { otherGenres as allGenres } from "../requests";
 
 export default function Home() {
 	const [moreGenres, setMoreGenres] = useState([]);
 	const lineBreak = <hr className="my-3 lg:my-6 border-none" />;
 
 	const getMoreMovies = () => {
-		const availableGenres = otherGenres.filter((genre) => {
+		const availableGenres = allGenres.filter((genre) => {
 			return !moreGenres.some((gen) => {
 				return gen.props.title === genre.title;
 			});
-			// return moreGenres.filter((gen) => {
-			// 	return gen.props.title !== genre.title;
-			// });
 		});
 		console.log(availableGenres);
 		let getRandomGenre = Math.floor(Math.random() * availableGenres.length);
@@ -47,10 +44,10 @@ export default function Home() {
 				))}
 			</main>
 			<div className="flex justify-center">
-				{otherGenres.length !== moreGenres.length && (
+				{allGenres.length !== moreGenres.length && (
 					<button
 						onClick={() => getMoreMovies()}
-						className="border bg-gray-300 text-black border-gray-300 py-2 px-5 rounded hover:active:bg-gray-100 transition hover:active:-translate-y-1 active:-translate-y-0 bg-gray-500 border-gray-500"
+						className="bg-red-600 text-white px-4 py-2 rounded cursor-pointer  hover:bg-red-800 hover:-translate-y-1 transition active:-translate-y-0"
 					>
 						See more...
 					</button>
