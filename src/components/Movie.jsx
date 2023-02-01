@@ -9,52 +9,54 @@ export default function Movie({ movie }) {
 	const { user } = userAuth();
 	let movieRef = doc(db, `users`, `${user?.uid}`);
 
-	// const getLikedMovies = async (movieRef) => {
-	// 	const doc = await getDoc(movieRef);
-	// 	const likedMovies = doc?.data()?.savedMovies;
-	// };
+	useEffect(() => {
+		movieRef = doc(db, `users`, `${user?.user?.uid}`);
+	}, [user, movieRef]);
 
 	useEffect(() => {
-		movieRef = doc(db, `users`, `${user?.uid}`);
-	}, []);
-
-	useEffect(() => {
-		// getLikedMovies(movieRef);
-		getDoc(movieRef).then((doc) => {
-			let cloudMovies = doc?.data()?.savedMovies;
-			const filterMovie = cloudMovies?.filter(
-				(cloudMovie) => cloudMovie.id === movie.id
-			);
-			if (filterMovie && filterMovie?.length > 0) {
-				setIsLiked(true);
+		const fetchSavedMovies = async () => {
+			try {
+				const doc = await getDoc(movieRef);
+				const cloudMovies = doc?.data()?.savedMovies;
+				const filterMovie = cloudMovies?.filter(
+					(cloudMovie) => cloudMovie.id === movie.id
+				);
+				setIsLiked(filterMovie && filterMovie.length > 0);
+			} catch (error) {
+				console.error(error);
 			}
-		}),
-			(error) => {
-				console.log(error);
-			};
-	}, [movieRef]);
+		};
+
+		if (user) {
+			fetchSavedMovies();
+		}
+	}, [user]);
 
 	const handleLike = async () => {
+		// console.log(movieRef._key.path.segments);
 		if (user) {
+			let updatedData = {};
 			if (!isLiked) {
-				await updateDoc(movieRef, {
+				updatedData = {
 					savedMovies: arrayUnion({
 						id: movie.id,
 						title: movie.title,
 						img: movie.backdrop_path
 					})
-				});
+				};
 			} else {
-				await updateDoc(movieRef, {
+				updatedData = {
 					savedMovies: arrayRemove({
 						id: movie.id,
 						title: movie.title,
 						img: movie.backdrop_path
 					})
-				});
+				};
 			}
 
-			setIsLiked(!isLiked);
+			await updateDoc(movieRef, updatedData).then(() => {
+				setIsLiked(!isLiked);
+			});
 		} else {
 			alert("Please log in to save your favorites");
 		}

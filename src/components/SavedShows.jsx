@@ -5,10 +5,8 @@ import { doc, updateDoc, onSnapshot } from "firebase/firestore";
 import { X } from "phosphor-react";
 
 export default function SavedShows() {
-	// Get user's saved movies
 	const { user } = userAuth();
 	const movieRef = doc(db, `users`, `${user?.uid}`);
-	// const movieRef = doc(db, `users`, `${user?.email}`);
 	const [favoriteMovies, setFavoriteMovies] = useState([]);
 
 	// Firebase call for liked movies & to check if the movie is in row. Save to state.
@@ -16,7 +14,6 @@ export default function SavedShows() {
 		onSnapshot(movieRef, (doc) => {
 			setFavoriteMovies(doc?.data()?.savedMovies);
 		});
-		console.log(favoriteMovies);
 	}, [user?.email]);
 
 	const removeMovie = async (movieID) => {
