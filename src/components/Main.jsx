@@ -25,6 +25,23 @@ export default function Main() {
 		}
 	};
 
+	const getTrailer = (movieId) => {
+		const apiKey = import.meta.env.VITE_MOVIE_API_KEY;
+		const apiUrl = "https://api.themoviedb.org/3/";
+		const apiCall = `${apiUrl}movie/${movieId}/videos?api_key=${apiKey}&language=en-US`;
+		axios
+			.get(apiCall)
+			.then((response) => {
+				const trailer = response.data.results.find(
+					(result) => result.type === "Trailer"
+				);
+				if (trailer) {
+					window.open(`https://www.youtube.com/watch?v=${trailer.key}`);
+				}
+			})
+			.catch((error) => console.log(error));
+	};
+
 	return (
 		<header className="w-full h-[600px] xl:h-[700px] text-white overflow-hidden">
 			<div className="w-full h-full opacity-80 transition ease hover:scale-105 duration-300">
@@ -41,8 +58,11 @@ export default function Main() {
 				</h1>
 				<hr className="border-2 border-red-600 w-1/5" />
 				<div className="flex gap-2 my-6">
-					<button className="border bg-gray-300 text-black border-gray-300 py-2 px-5 rounded hover:bg-gray-100 transition hover:-translate-y-1 active:-translate-y-0">
-						Play
+					<button
+						className="border bg-gray-300 text-black border-gray-300 py-2 px-5 rounded hover:bg-gray-100 transition hover:-translate-y-1 active:-translate-y-0"
+						onClick={() => getTrailer(movies[randomMovie]?.id)}
+					>
+						Watch Trailer
 					</button>
 					<button className="border text-white border-gray-300 py-2 px-5 rounded transition hover:-translate-y-1 active:-translate-y-0 hover:bg-neutral-900">
 						Watch Later
