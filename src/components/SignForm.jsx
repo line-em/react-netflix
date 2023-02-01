@@ -22,7 +22,8 @@ export default function SignForm({ type }) {
 						navigate("/", { replace: true });
 					}, 2000);
 				})
-				.catch(() => {
+				.catch((error) => {
+					console.log(error);
 					setError(true);
 				});
 		} else {
@@ -33,7 +34,7 @@ export default function SignForm({ type }) {
 						navigate("/", { replace: true });
 					}, 2000);
 				})
-				.catch(() => {
+				.catch((error) => {
 					setError(true);
 				});
 		}
@@ -82,11 +83,14 @@ export default function SignForm({ type }) {
 							{type}
 						</button>
 
-						<div>{(error && errorMessage) || (success && successMessage)}</div>
+						<div>
+							{(error && errorMessage) || (success && successMessage)}
+						</div>
 
 						<aside className="flex justify-between items-center text-sm">
 							<label htmlFor="remember">
-								<input type="checkbox" name="remember" id="remember" /> Remember me
+								<input type="checkbox" name="remember" id="remember" />{" "}
+								Remember me
 							</label>
 							<span className="underline text-red-400 hover:text-red-200 transition">
 								<Link to="/">Need help?</Link>

@@ -7,7 +7,8 @@ import { X } from "phosphor-react";
 export default function SavedShows() {
 	// Get user's saved movies
 	const { user } = userAuth();
-	const movieRef = doc(db, `users`, `${user?.email}`);
+	const movieRef = doc(db, `users`, `${user?.uid}`);
+	// const movieRef = doc(db, `users`, `${user?.email}`);
 	const [favoriteMovies, setFavoriteMovies] = useState([]);
 
 	// Firebase call for liked movies & to check if the movie is in row. Save to state.

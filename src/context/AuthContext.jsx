@@ -16,7 +16,8 @@ export function AuthContextProvider({ children }) {
 	async function signUp(email, password) {
 		const user = await createUserWithEmailAndPassword(auth, email, password);
 		setUser(user);
-		setDoc(doc(db, `users`, email), {
+		setDoc(doc(db, `users`, user.user.uid), {
+			// setDoc(doc(db, `users`, email), {
 			savedMovies: []
 		});
 		return user;

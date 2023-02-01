@@ -16,7 +16,7 @@ export default function Home() {
 			<main className="mx-6 lg:mx-12 mt-6">
 				<Row title="Trending" apiUrl={movieRequest.requestTrending} />
 				{lineBreak}
-				<Row title="Top Rated" apiUrl={movieRequest.requestTopRated} />
+				{/* <Row title="Top Rated" apiUrl={movieRequest.requestTopRated} />
 				{lineBreak}
 				<Row title="Latest" apiUrl={movieRequest.requestLatest} />
 				{lineBreak}
@@ -27,7 +27,7 @@ export default function Home() {
 				<Row title="Drama" apiUrl={movieRequest.requestDrama} />
 				{lineBreak}
 				<Row title="Documentary" apiUrl={movieRequest.requestDocumentary} />
-				{lineBreak}
+				{lineBreak} */}
 			</main>
 			<div className="flex justify-center">
 				<button
