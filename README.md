@@ -1,5 +1,9 @@
 # React Netflix Clone
 
+<!-- NEW IMAGES -->
+<!-- YARN BUILD .TOFIXED -->
+<!-- NEW DESCRIPTION -->
+
 **There are several changes being made in this project right now!**
 
 This was a comprehensive project! Challenging, mostly because of Firebase, but I enjoyed its process 🎉
