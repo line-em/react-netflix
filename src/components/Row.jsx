@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import Movie from "./Movie";
 
 export default function Row(props) {
-	// States: row of movies & liked movies fetched from firebase
 	const [row, setRow] = useState();
 
 	// Sliders
@@ -26,14 +25,16 @@ export default function Row(props) {
 		}
 	};
 
-	// API call for row of movies
 	useEffect(() => {
 		getRequest();
 	}, [props.apiUrl]);
 
 	return (
 		<>
-			<h2 className="text-white font-bold md:text-xl first:py-4 pb-4 tracking-wide flex place-items-center gap-2">
+			<h2
+				className="text-white font-bold md:text-xl first:py-4 pb-4 tracking-wide flex place-items-center gap-2"
+				key={props.title}
+			>
 				<Square size={24} color="#fff" weight="fill" className="fill-red-600" />
 				{props.title}
 			</h2>
@@ -50,7 +51,8 @@ export default function Row(props) {
 					ref={slider}
 					className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
 				>
-					{row !== null && row?.map((movie, id) => <Movie movie={movie} key={id} />)}
+					{row !== null &&
+						row?.map((movie, id) => <Movie movie={movie} key={id} />)}
 					{/* liked={isLikedCloud && isLikedCloud?.includes(movie.id)} */}
 				</div>
 

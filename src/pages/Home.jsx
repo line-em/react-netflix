@@ -4,33 +4,29 @@ import { useState } from "react";
 import Footer from "../components/Footer";
 import Main from "../components/Main";
 import Row from "../components/Row";
-import movieRequest from "../requests";
+import movieRequest, { otherGenres } from "../requests";
 
 export default function Home() {
 	const [moreGenres, setMoreGenres] = useState([]);
 	const lineBreak = <hr className="my-3 lg:my-6 border-none" />;
-	const otherGenres = [
-		<Row title="Sci-Fi" apiUrl={movieRequest.requestSciFi} />,
-		<Row title="Animation" apiUrl={movieRequest.requestAnimation} />,
-		<Row title="Drama" apiUrl={movieRequest.requestDrama} />,
-		<Row title="Documentary" apiUrl={movieRequest.requestDocumentary} />,
-		<Row title="Action" apiUrl={movieRequest.requestAction} />,
-		<Row title="Crime" apiUrl={movieRequest.requestCrime} />,
-		<Row title="Comedy" apiUrl={movieRequest.requestComedy} />,
-		<Row title="Romance" apiUrl={movieRequest.requestRomance} />,
-		<Row title="Fantasy" apiUrl={movieRequest.requestFantasy} />,
-		<Row title="Music" apiUrl={movieRequest.requestMusic} />
-	];
 
 	const getMoreMovies = () => {
-		const availableGenres = otherGenres.filter(
-			(genre) => !moreGenres.includes(genre)
-		);
+		const availableGenres = otherGenres.filter((genre) => {
+			return !moreGenres.some((gen) => {
+				return gen.props.title === genre.title;
+			});
+			// return moreGenres.filter((gen) => {
+			// 	return gen.props.title !== genre.title;
+			// });
+		});
+		console.log(availableGenres);
 		let getRandomGenre = Math.floor(Math.random() * availableGenres.length);
 		let randomGenre = availableGenres[getRandomGenre];
-		console.log(availableGenres);
 
-		setMoreGenres((prev) => [...prev, randomGenre]);
+		setMoreGenres((prev) => [
+			...prev,
+			<Row title={randomGenre?.title} apiUrl={randomGenre?.apiUrl} />
+		]);
 	};
 
 	return (
@@ -43,21 +39,12 @@ export default function Home() {
 				{lineBreak}
 				<Row title="Latest" apiUrl={movieRequest.requestLatest} />
 				{lineBreak}
-				{/*<Row title="Sci-Fi" apiUrl={movieRequest.requestSciFi} />
-				{lineBreak}
-				<Row title="Animation" apiUrl={movieRequest.requestAnimation} />
-				{lineBreak}
-				<Row title="Drama" apiUrl={movieRequest.requestDrama} />
-				{lineBreak}
-				<Row title="Documentary" apiUrl={movieRequest.requestDocumentary} />
-				{lineBreak} */}
-				{moreGenres &&
-					moreGenres.map((movie) => (
-						<>
-							{movie}
-							{lineBreak}
-						</>
-					))}
+				{moreGenres?.map((movie, index) => (
+					<div key={index}>
+						{movie}
+						{lineBreak}
+					</div>
+				))}
 			</main>
 			<div className="flex justify-center">
 				{otherGenres.length !== moreGenres.length && (
