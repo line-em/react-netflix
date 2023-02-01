@@ -24,6 +24,8 @@ export default function SavedShows() {
 	useEffect(() => {
 		console.log("rerender");
 		onSnapshot(movieRef, (doc) => {
+			// const cloudData = doc?.data()?.savedMovies;
+			// setFavoriteMovies(Array.from(new Set(cloudData)));
 			setFavoriteMovies(doc?.data()?.savedMovies);
 		});
 	}, []);

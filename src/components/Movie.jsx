@@ -44,7 +44,7 @@ export default function Movie({ movie }) {
 					savedMovies: arrayUnion({
 						id: movie.id,
 						desc: movie.overview,
-						rating: movie.vote_average,
+						rating: movie.vote_average.toFixed(1),
 						title: movie.title,
 						img: movie.backdrop_path
 					})
@@ -54,7 +54,7 @@ export default function Movie({ movie }) {
 					savedMovies: arrayRemove({
 						id: movie.id,
 						desc: movie.overview,
-						rating: movie.vote_average,
+						rating: movie.vote_average.toFixed(1),
 						title: movie.title,
 						img: movie.backdrop_path
 					})
