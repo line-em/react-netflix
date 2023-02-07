@@ -8,11 +8,9 @@
 
 This was a comprehensive project! Challenging, mostly because of Firebase, but I enjoyed its process 🎉
 
-I used [this video as a guide](https://www.youtube.com/watch?v=ATz8wg6sg30), and it was wonderful in explaining a lot of new technologies for me (**Tailwind and Firebase**, mostly). However, I did some things differently, like using the **useRef hook**, adding extra **loading and error states**, **toast notifications**, extra hover and active effects (mostly CSS transforms). Also, I'm using tools and libraries that I'm more comfortable with, such as **Vite** instead of CRA, and **Phosphor Icons**, which is a delightful library I love to use. While I loved the guide, I just feel that I learn better if I deviate a little, not following it 100%. 😊
+It's the result of [this guide](https://www.youtube.com/watch?v=ATz8wg6sg30) and an Scrimba exercise, both which I built upon. I was able to learn **Tailwind and Firebase**, specially Auth and Databases. I added **modals**, customizable homepage with various random categories, **useRefs** for the Rows, **loading and error states**, **toast notifications**, customizable alerts with **Sweet Alert**, extra hover and active effects like CSS transforms. My biggest challenge was making Firebase function smoothly, specially while **loading your personal library and liked movies.** You can create your own account and create your own movie library in this app, managing your movies.
 
-Contrary to my other projects, I decided that for this one, I ought to stick closer to the original Netflix design, and focus more on the other functionalities instead of the CSS.
-
-Firebase was a challenge, but fun! You can **create an account** and save your liked movies in this demo, managing your movies.
+Also, I'm using tools and libraries that I'm more comfortable with, such as **Vite** instead of CRA, and **Phosphor Icons**, which is a delightful library I love to use.
 
 ![](<./public/thumb%20(2).png>)
 ![](<./public/thumb%20(3).png>)
@@ -32,6 +30,7 @@ And as for visual libraries:
 
 -   Phosphor Icons
 -   @uiball/loaders
+-   Sweet Alert
 
 # Challenges
 
@@ -48,3 +47,4 @@ This wasn't happening until I tried to fetch the cloud data from Firebase. If I 
 ## Changelog
 
 -   1.0 - Initial commit.
+-   2.0 - Huge bugfixes. Added SweetAlert and improved the Firebase code.
