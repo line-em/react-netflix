@@ -4,9 +4,8 @@
 <!-- YARN BUILD .TOFIXED -->
 <!-- NEW DESCRIPTION -->
 
-**There are several changes being made in this project right now!**
-
 This was a comprehensive project! Challenging, mostly because of Firebase, but I enjoyed its process 🎉
+**[Check the final version here!](https://line-em.github.io/react-netflix/)**
 
 It's the result of [this guide](https://www.youtube.com/watch?v=ATz8wg6sg30) and an Scrimba exercise, both which I built upon. I was able to learn **Tailwind and Firebase**, specially Auth and Databases. I added **modals**, customizable homepage with various random categories, **useRefs** for the Rows, **loading and error states**, **toast notifications**, customizable alerts with **Sweet Alert**, extra hover and active effects like CSS transforms. My biggest challenge was making Firebase function smoothly, specially while **loading your personal library and liked movies.** You can create your own account and create your own movie library in this app, managing your movies.
 
