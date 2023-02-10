@@ -12,9 +12,10 @@ It's the result of [this guide](https://www.youtube.com/watch?v=ATz8wg6sg30) and
 
 Also, I'm using tools and libraries that I'm more comfortable with, such as **Vite** instead of CRA, and **Phosphor Icons**, which is a delightful library I love to use.
 
-![](<./public/thumb%20(2).png>)
-![](<./public/thumb%20(3).png>)
-![](<./public/thumb%20(1).png>)
+![](<./public/newthumb%20(2).png>)
+![](<./public/newthumb%20(3).png>)
+![](<./public/newthumb%20(1).png>)
+![](<./public/newthumb%20(4).png>)
 
 ## Overview
 
