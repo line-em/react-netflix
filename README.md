@@ -34,15 +34,9 @@ And as for visual libraries:
 
 # Challenges
 
-I had a lot of difficulties adjusting the Firebase promises with the API calls. Sometimes the functions don't work, and there is some data that fails to load. I found out that often, simply refreshing the page fixes these issues, although it is still a problem. I learned a lot about the differences about onSnapshot, getDoc, etc, but was still unable to resolve the issues. It affects mostly:
+I had a lot of difficulties with using Firebase - and until some things clicked, it took me a while. Handling its promises, getting data from the database, where some steps in which I struggled. I still find it is quite slow at first - when you try to like new movies, there's a slight delay with a fresh login. It works, but I think there could be improvements.
 
--   The first loading of the page: the liked movies don't appear as likes (the heart symbol)
--   Liking movies don't work until refreshing, same as removing the movies from the Account page.
--   Sometimes the images may fail to load.
-
-As mentioned, though, it tends to work as expected when refreshing the page.
-
-This wasn't happening until I tried to fetch the cloud data from Firebase. If I don't use getDoc() on row, the problem vanishes. I know that there is something I'm missing and that isn't clicking, and I will try to fix this in the future.
+I think, because of this, there might be some bugs in edge cases in which I should probably locate and fix.
 
 ## Changelog
 
